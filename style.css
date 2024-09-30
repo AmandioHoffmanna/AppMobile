@@ -31,6 +31,7 @@ nav .logo {
 nav ul {
     display: flex;
     list-style: none;
+    transition: all 0.3s ease;
 }
 
 nav ul li {
@@ -41,6 +42,13 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 1rem;
+}
+
+.menu-icon {
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    display: none;
 }
 
 .hero {
@@ -137,11 +145,112 @@ footer {
         font-size: 1rem;
     }
 
+    .menu-icon {
+        display: block;
+    }
+
     nav ul {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        background-color: rgba(0, 128, 128, 0.9); /* Fundo semitransparente */
         flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.3s ease;
+        z-index: 1000; /* Para garantir que fique sobre o conteúdo */
+    }
+
+    nav ul.active {
+        right: 0;
     }
 
     nav ul li {
-        margin: 10px 0;
+        margin: 20px 0;
     }
+
+    nav ul li a {
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+    /* Para garantir que o conteúdo não seja sobreposto quando o menu não estiver ativo */
+    .section {
+        z-index: 1;
+        position: relative;
+    }
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #ff7f50; /* Cor do sublinhado */
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li a:hover {
+    color: #ff7f50; /* Cor do texto ao passar o mouse */
+}
+
+.logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logo a:hover {
+    color: #ff7f50; /* Cor ao passar o mouse no logo */
+}
+
+/* Botão de fechar o menu */
+.close-btn {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Quando o menu está ativo no mobile, mostrar o botão de fechar */
+@media (max-width: 768px) {
+    .close-btn {
+        display: block;
+    }
+}
+
+.btn {
+    background: #ff7f50;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background: #e76f51; /* Cor do botão ao passar o mouse */
+    transform: scale(1.05); /* Efeito de crescimento ao passar o mouse */
 }
