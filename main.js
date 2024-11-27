@@ -33,6 +33,19 @@ document.getElementById('logo').addEventListener('click', (e) => {
     });
 });
 
+// Servir arquivos estáticos
+app.use(express.static(path.join(__dirname)));
+
+// Rota padrão
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Inicializa o servidor
+app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://127.0.0.1:${PORT}`);
+});
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/service-worker.js')
